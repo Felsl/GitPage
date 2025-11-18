@@ -1,0 +1,35 @@
+name: Deploy to Somee
+
+on:
+  push:
+    branches:
+      - main # đổi nếu bạn dùng branch khác
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Setup Node (nếu là project React, NodeJS)
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      # Deploy qua FTP (Somee yêu cầu FTP upload)
+      - name: Upload to Somee via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.3
+        with:
+          server: felsl.somee.com
+          username: FlSl
+          password: Garen123
+          local-dir: ./build # Nếu React = build | Nếu .NET = publish folder
+          server-dir: / # thư mục gốc hosting
