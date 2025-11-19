@@ -31,5 +31,5 @@ jobs:
           server: ${{ secrets.SOMEE_FTP_SERVER }}
           username: ${{ secrets.SOMEE_FTP_USERNAME }}
           password: ${{ secrets.SOMEE_FTP_PASSWORD }}
-          local-dir: ./build        # Nếu React = build | Nếu .NET = publish folder
+          local-dir: ./build/       # Nếu React = build | Nếu .NET = publish folder
           server-dir: /             # thư mục gốc hosting
